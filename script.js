@@ -2,23 +2,14 @@
 let size = 16;
 make_grid(size);
 
-// Give a prompt when clicking button
-let btn = document.querySelector(".prompt_btn");
-btn.addEventListener('click', function () {
-    let answer = prompt("How many squares per side? (limit 100)");
-    size = parseInt(answer);
-    while (true) {
-        if (size > 100) {
-            answer = prompt("That's too many tiles! Please give a reasonable number.");
-            size = parseInt(answer);
-        }
-        else if (size < 1) {
-            answer = prompt("I said resonable... not negative");
-            size = parseInt(answer);
-        }
-        else {break;}
-    }
-    make_grid(size);
+// Make a new grid when pressing a button with given size
+let size_btns = document.querySelectorAll(".size_btn");
+size_btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        let size = btn.getAttribute("name");
+        size = parseInt(size);
+        make_grid(size);
+    })
 });
 
 function make_grid (size) {
