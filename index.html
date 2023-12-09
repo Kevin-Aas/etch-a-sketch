@@ -7,6 +7,7 @@
         <script src="./script.js" defer></script>
     </head>
     <body>
+        <h1>Etch A Sketch</h1>
         <h2>Amount of tiles per side</h2>
         <div class="size_button_container">
             <button class="size_btn" name="8">8</button>
@@ -16,6 +17,22 @@
         </div>
         <div class="container">
             <!--div tiles will be placed here-->
+        </div>
+        <div class="mode_container">
+            <div class="mode">
+                White
+                <button class="mode_btn" name="white"></button>
+            </div>
+            <div class="mode">
+                Solid
+                <div class="mode_btn" name="solid">
+                    <input type="color" id="color_input">
+                </div>
+            </div>
+            <div class="mode">
+                Rainbow
+                <button class="mode_btn" name="rainbow"></button>
+            </div>
         </div>
     </body>
 </html>

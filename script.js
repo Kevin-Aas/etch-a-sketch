@@ -1,4 +1,5 @@
 // Set up initial grid
+let mode = 'white';
 let size = 16;
 make_grid(size);
 
@@ -28,13 +29,39 @@ function make_grid (size) {
         div.style.width = `${div_size}px`;
         div.style.height = `${div_size}px`;
         div.style.backgroundColor = "black";
-        // Add event listener to new div:
-        div.addEventListener('mouseover', function () {
-            div.style.backgroundColor = "red"; // div changes color when mouseover
-        });
+        // Make div change color when mouseover:
+        div.addEventListener('mouseover', changeColor);
         container.appendChild(div);
     }
 
     // Replace the old container with the new:
     body.replaceChild(container, old_container);
 }
+
+function changeColor (event) {
+    if (mode == 'white') {
+        event.target.style.backgroundColor = 'white';
+    }
+    else if (mode == 'rainbow') {
+        let red = Math.random() * 255;
+        let green = Math.random() * 255;
+        let blue = Math.random() * 255;
+        event.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+    else if (mode == 'solid') {
+        event.target.style.backgroundColor = input_color;
+    }
+}
+
+let mode_btns = document.querySelectorAll('.mode_btn');
+mode_btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        mode = btn.getAttribute('name');
+    });
+});
+
+let input_color = '';
+let input = document.querySelector("#color_input");
+input.addEventListener('input', function (event) {
+    input_color = event.target.value;
+})
